@@ -41,6 +41,7 @@ function play_sequence(level, sequence) {
 window.onkeyup = function(e) {
    var key = e.keyCode ? e.keyCode : e.which;
    if (listening) {
+
     if (key == 38) {
        //pressed up
     } else if (key == 39) { 
@@ -50,6 +51,7 @@ window.onkeyup = function(e) {
     } else if (key == 41) { 
        //press left
     }
+
    }
 
 }
