@@ -1,0 +1,76 @@
+body {
+background-color: pink;
+}
+
+.button-level {
+}
+
+#level-1 {
+  
+}
+
+#level-2 {
+  margin-top: 110px;
+}
+
+#level-3 {
+  margin-top: 110px;
+}
+
+.simon-button {
+  width: 0;
+  height: 0;
+}
+
+#button-1 {
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid red;
+  margin-left: 110px;
+}
+
+#button-2 {
+  display: inline-block;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-right: 100px solid red;
+}
+
+#button-3 {
+  display: inline-block;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-left: 100px solid red;
+  margin-left: 120px;
+}
+
+#button-4 {
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 100px solid red;
+  margin-left: 110px;
+}
+
+@keyframes light-up-top {
+    0% {border-bottom: 100px solid red;} 
+    50% {border-bottom: 100px solid #fc3272;} 
+    100% {border-bottom: 100px solid red;}
+}
+
+@keyframes light-up-left {
+    0% {border-right: 100px solid red;} 
+    50% {border-right: 100px solid #fc3272;} 
+    100% {border-right: 100px solid red;}
+}
+
+@keyframes light-up-right {
+    0% {border-left: 100px solid red;} 
+    50% {border-left: 100px solid #fc3272;} 
+    100% {border-left: 100px solid red;}
+}
+
+@keyframes light-up-bottom {
+    0% {border-top: 100px solid red;} 
+    50% {border-top: 100px solid #fc3272;} 
+    100% {border-top: 100px solid red;}
+}
