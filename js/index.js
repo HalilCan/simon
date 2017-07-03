@@ -28,11 +28,11 @@ function start_game () {
 function start_level (level, sequence) {
   play_sequence(level, sequence);
   var is_strict = check_strict();
-  start_listening (is_strict, sequence);
+  start_listening (is_strict, level, sequence);
 }
 
 function play_sequence(level, sequence) {
-  for (var i = 0; i < level; i++) {
+  for (var i = 0; i < level + 1; i++) {
     play_sound(sequence[i]);
     animate_button(sequence[i]);
   }
@@ -41,20 +41,22 @@ function play_sequence(level, sequence) {
 window.onkeyup = function(e) {
    var key = e.keyCode ? e.keyCode : e.which;
    if (listening) {
-
-    if (key == 38) {
-       //pressed up
+    if (key == 38) { //check the codes
+      button_press(1);
     } else if (key == 39) { 
-       //press right
-    } else if (key == 40) { 
-       //press down
+      button_press(3);
+    } else if (key == 40) {
+      button_press(4);
     } else if (key == 41) { 
-       //press left
+      button_press(2);
     }
-
    }
+}
+
+function button_press(b_index) {
 
 }
+
 
 function play_sound(index) {
   var sound = new Audio(sound_urls[index]);
