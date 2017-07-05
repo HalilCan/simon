@@ -1,6 +1,4 @@
-var listening = false;
-
-var sound_urls = ['https://s3.amazonaws.com/freecodecamp/simonSound1.mp3', 
+var sound_urls = ['https://s3.amazonaws.com/freecodecamp/simonSound1.mp3',
 'https://s3.amazonaws.com/freecodecamp/simonSound2.mp3', 
 'https://s3.amazonaws.com/freecodecamp/simonSound3.mp3', 
 'https://s3.amazonaws.com/freecodecamp/simonSound4.mp3'];
@@ -30,7 +28,6 @@ function start_game () {
 
 function start_level () {
   play_sequence();
-  is_listening = true;
 }
 
 var anim_index = 0;
@@ -38,20 +35,21 @@ function play_sequence() {
   for (var i = 0; i < level + 1; i++) {
     console.log('played seq value : ' + sequence[i]);
     anim_index = sequence[i];
-    window.setTimeout(animate_comp_button, 1000);
-    /*(function(i) {
+    /*window.setTimeout(animate_comp_button, 1000);
+    */(function(i) {
       setTimeout(function() {
-        animate_comp_button(sequence[i]);
+        animate_button(sequence[i]);
         console.log(Date.now());
-      }, 1000);
-    })(i);*/
+      }, 1000 * i);
+    })(i);
   }
+  setTimeout(make_listening, 2000);
 }
 
 window.onkeyup = function(e) {
    var key = e.keyCode ? e.keyCode : e.which;
    
-   if (is_listening) {
+   if (is_listening === true) {
     if (key === 38) { //check the codes
       button_press(1);
     } else if (key === 39) {
@@ -84,6 +82,7 @@ function button_press(b_index) {
 }
 
 function wrong_response() {
+  not_listening();
   //change display property of notification messages
   if (is_strict) {
     restart_game();
@@ -110,8 +109,12 @@ function animate_comp_button() {
   $(buttons[ind]).fadeIn(200);
 }
 
-function toggle_listening() {
-  is_listening = !is_listening;
+function make_listening() {
+  is_listening = true;
+}
+
+function not_listening() {
+  is_listening = false;
 }
 
 function restart_level () {
