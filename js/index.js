@@ -31,20 +31,23 @@ function start_game () {
 function start_level () {
   play_sequence();
   is_listening = true;
-  player_sequence = [];
 }
 
 function play_sequence() {
   for (var i = 0; i < level + 1; i++) {
-    play_sound(sequence[i]);
-    animate_button(sequence[i]);
+    console.log('played seq value : ' + sequence[i]);
+    //window.setTimeout(function (i) {animate_button(sequence[i]);}, 0)(i);
+    (function(i) {
+      setTimeout(function() {
+        animate_button(sequence[i]);
+      }, 1000);
+    })(i);
   }
 }
 
 window.onkeyup = function(e) {
    var key = e.keyCode ? e.keyCode : e.which;
-  console.log('keyup detected ' + key);
-  console.log(is_listening);
+   
    if (is_listening) {
     if (key === 38) { //check the codes
       button_press(1);
@@ -59,12 +62,21 @@ window.onkeyup = function(e) {
 };
 
 function button_press(b_index) {
-  play_sound(b_index - 1);
-  animate_button(b_index - 1);
+  animate_button(b_index);
+  
   player_sequence.push(b_index);
-  if (player_sequence[player_sequence.length - 1] !=
+  
+  console.log('player seq= ' + player_sequence);
+  console.log('ai seq= ' + sequence);
+  
+  if (player_sequence[player_sequence.length - 1] !==
     sequence[player_sequence.length - 1]) {
+    console.log('wrong! you answered ' + player_sequence[player_sequence.length - 1] + 'but it should be ' + sequence[player_sequence.length - 1]);
     wrong_response();
+  } else if (player_sequence.length === level + 1 && player_sequence[level] ===
+  sequence[level]) {
+    console.log('next_level, past level = ' + level);
+    setTimeout(next_level, 0);
   }
 }
 
@@ -78,19 +90,35 @@ function wrong_response() {
 }
 
 function animate_button(index) {
-  console.log('hello');
-  $(buttons[index]).fadeOut(100);
-  $(buttons[index]).fadeIn(100);
-}
-
-
-
-function play_sound(index) {
-  var sound = new Audio(sound_urls[index]);
+  var ind = index - 1;
+  console.log('animated index: ' + ind);
+  var sound = new Audio(sound_urls[ind]);
   sound.play();
+  $(buttons[ind]).fadeOut(200);
+  $(buttons[ind]).fadeIn(200);
 }
 
+function toggle_listening() {
+  is_listening = !is_listening;
+}
+
+function restart_level () {
+  player_sequence = [];
+  start_level();
+}
+
+function next_level () {
+  player_sequence = [];
+  level += 1;
+  start_level();
+  //add upper limit
+}
+
+function restart_game () {
+  player_sequence = [];
+  start_game();
+}
 
 window.onload = function() {
-  is_listening = true;
+  start_game();
 };
