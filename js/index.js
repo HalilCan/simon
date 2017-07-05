@@ -32,6 +32,7 @@ function start_level () {
 
 var anim_index = 0;
 function play_sequence() {
+  not_listening();
   for (var i = 0; i < level + 1; i++) {
     console.log('played seq value : ' + sequence[i]);
     anim_index = sequence[i];
@@ -40,10 +41,10 @@ function play_sequence() {
       setTimeout(function() {
         animate_button(sequence[i]);
         console.log(Date.now());
-      }, 1000 * i);
+      }, 600 * i);
     })(i);
   }
-  setTimeout(make_listening, 2000);
+  setTimeout(make_listening, 600);
 }
 
 window.onkeyup = function(e) {
