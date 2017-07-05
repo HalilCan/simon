@@ -33,16 +33,18 @@ function start_level () {
   is_listening = true;
 }
 
+var anim_index = 0;
 function play_sequence() {
   for (var i = 0; i < level + 1; i++) {
     console.log('played seq value : ' + sequence[i]);
-    //window.setTimeout(function (i) {animate_button(sequence[i]);}, 0)(i);
-    (function(i) {
+    anim_index = i;
+    window.setTimeout(animate_comp_button, 1000);
+    /*(function(i) {
       setTimeout(function() {
-        animate_button(sequence[i]);
+        animate_comp_button(sequence[i]);
         console.log(Date.now());
       }, 1000);
-    })(i);
+    })(i);*/
   }
 }
 
@@ -95,8 +97,17 @@ function animate_button(index) {
   console.log('animated index: ' + ind);
   var sound = new Audio(sound_urls[ind]);
   sound.play();
-  $(buttons[ind]).delay(1000).fadeOut(200);
-  $(buttons[ind]).delay(1000).fadeIn(200);
+  $(buttons[ind]).fadeOut(200);
+  $(buttons[ind]).fadeIn(200);
+}
+
+function animate_comp_button() {
+  var ind = anim_index - 1;
+  console.log('animated index: ' + ind);
+  var sound = new Audio(sound_urls[ind]);
+  sound.play();
+  $(buttons[ind]).fadeOut(200);
+  $(buttons[ind]).fadeIn(200);
 }
 
 function toggle_listening() {
