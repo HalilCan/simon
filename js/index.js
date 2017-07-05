@@ -37,7 +37,7 @@ var anim_index = 0;
 function play_sequence() {
   for (var i = 0; i < level + 1; i++) {
     console.log('played seq value : ' + sequence[i]);
-    anim_index = i;
+    anim_index = sequence[i];
     window.setTimeout(animate_comp_button, 1000);
     /*(function(i) {
       setTimeout(function() {
