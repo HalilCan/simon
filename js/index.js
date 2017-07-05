@@ -40,6 +40,7 @@ function play_sequence() {
     (function(i) {
       setTimeout(function() {
         animate_button(sequence[i]);
+        console.log(Date.now());
       }, 1000);
     })(i);
   }
@@ -94,8 +95,8 @@ function animate_button(index) {
   console.log('animated index: ' + ind);
   var sound = new Audio(sound_urls[ind]);
   sound.play();
-  $(buttons[ind]).fadeOut(200);
-  $(buttons[ind]).fadeIn(200);
+  $(buttons[ind]).delay(1000).fadeOut(200);
+  $(buttons[ind]).delay(1000).fadeIn(200);
 }
 
 function toggle_listening() {
