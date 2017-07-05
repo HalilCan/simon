@@ -77,7 +77,7 @@ function button_press(b_index) {
   } else if (player_sequence.length === level + 1 && player_sequence[level] ===
   sequence[level]) {
     console.log('next_level, past level = ' + level);
-    setTimeout(next_level, 0);
+    setTimeout(next_level, 1000);
   }
 }
 
