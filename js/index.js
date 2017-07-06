@@ -14,10 +14,25 @@ var curr_lvl = document.getElementById('current-level');
 var casual_button = document.getElementById('casual-strict-button');
 var seq_len_disp = document.getElementById('seq-length');
 
+var modes = ['Casual', 'Strict'];
+
 /* due to how getElementsByClassName works, buttons are:
   1
 2   3
   4  */
+
+casual_button.onclick = function () {
+  toggle_game_mode();
+};
+
+function toggle_game_mode() {
+  is_strict = !is_strict;
+  if (is_strict) {
+    casual_button.innerHTML = ('Strict');
+  } else {
+    casual_button.innerHTML = ('Casual');
+  }
+}
 
 //Generate the current game's entire 20-character
 //sequence to be played incrementally each level
@@ -127,15 +142,6 @@ function animate_button(index) {
   $(buttons[ind]).fadeIn(200);
 }
 
-function animate_comp_button() {
-  var ind = anim_index - 1;
-  console.log('animated index: ' + ind);
-  var sound = new Audio(sound_urls[ind]);
-  sound.play();
-  $(buttons[ind]).fadeOut(200);
-  $(buttons[ind]).fadeIn(200);
-}
-
 function make_listening() {
   is_listening = true;
 }
@@ -158,6 +164,7 @@ function next_level () {
 
 function restart_game () {
   player_sequence = [];
+  level = 0;
   start_game();
 }
 

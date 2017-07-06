@@ -108,3 +108,18 @@ background-color: pink;
     50% {border-top: 100px solid #fc3272;} 
     100% {border-top: 100px solid red;}
 }
+
+.info-text {
+    position: absolute;
+    display: inline;
+    z-index: 2;
+}
+
+#seq-length {
+}
+
+#current-level {
+}
+
+
+
