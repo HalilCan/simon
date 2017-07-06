@@ -124,6 +124,7 @@ function render_cur_lvl () {
 
 function wrong_response() {
   not_listening();
+  alert('Simon says No!');
   //change display property of notification messages
   if (is_strict) {
     restart_game();
@@ -160,10 +161,9 @@ function next_level () {
     start_level();
   }
   else {
-  
+    alert('Simon says you win!');
+    restart_game();
   }
-  
-  //TODO: add upper limit
 }
 
 function restart_game () {
