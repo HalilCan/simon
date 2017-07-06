@@ -57,7 +57,7 @@ function play_sequence() {
     })(i);
   }
   is_listening = false;
-  setTimeout(make_listening, 700*(level + 1));
+  setTimeout(make_listening, 600*(level + 1));
 }
 
 window.onkeyup = function(e) {
@@ -93,6 +93,7 @@ function button_press(b_index) {
     wrong_response();
   } else if (player_sequence.length === level + 1 && player_sequence[level] ===
   sequence[level]) {
+    not_listening();
     console.log('next_level, past level = ' + level);
     setTimeout(next_level, 1000);
   }
