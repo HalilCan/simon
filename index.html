@@ -6,11 +6,11 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
   </script>
+  <link href="https://fonts.googleapis.com/css?family=Oswald:700" rel="stylesheet">
 </head>
 
 <body>
-  <div class = 'stripe' id = 'bg-horizon'></div>
-  <div class = 'stripe' id = 'bg-vertical'></div>
+  <div id = 'all-might-container'>
   <div id = 'buttons'> 
   <div class = 'button-level' id = 'level-1'>
     
@@ -20,15 +20,20 @@
   <div class = 'button-level' id = 'level-2'>
 
     <div class = 'simon-button button-2-off' id = 'button-2'></div>
-
-    <span class = 'info-text settings-button' id = 'casual-strict-button'>
-      Casual
+    <span class = 'info-container' id = 'casual-container'>
+      <span class = 'info-text settings-button' id = 'casual-strict-button'>
+        Casual
+      </span>
     </span>
-    <span class = 'info-text' id = 'current-level'>
-      !Level 0
+    <span class = 'info-container' id = 'level-container'>
+      <span class = 'info-text' id = 'current-level'>
+        !Level 0
+      </span>
     </span>
-    <span class = 'info-text' id = 'seq-length'>
-      !0
+    <span class = 'info-container' id = 'len-container'>
+      <span class = 'info-text' id = 'seq-length'>
+        !0
+      </span>
     </span>
 
     <div class = 'simon-button button-3-off' id = 'button-3'></div>
@@ -41,7 +46,10 @@
     
   </div>
 </div>
-  
+  <div id = 'page-wide-container'>
+    <div id = 'restart-button'> >Restart current level</div>
+  </div>
+  </div>
     <script src="js/index.js"></script>
 
 </body>

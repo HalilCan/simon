@@ -13,6 +13,7 @@ var is_listening = false;
 var curr_lvl = document.getElementById('current-level');
 var casual_button = document.getElementById('casual-strict-button');
 var seq_len_disp = document.getElementById('seq-length');
+var restart_level_button = document.getElementById('restart-button');
 
 var modes = ['Casual', 'Strict'];
 
@@ -25,7 +26,12 @@ casual_button.onclick = function () {
   toggle_game_mode();
 };
 
+restart_level_button.onclick = function () {
+  restart_level();
+};
+
 function toggle_game_mode() {
+  console.log('togg');
   is_strict = !is_strict;
   if (is_strict) {
     casual_button.innerHTML = ('Strict');
@@ -61,13 +67,11 @@ var anim_index = 0;
 function play_sequence() {
   not_listening();
   for (var i = 0; i < level + 1; i++) {
-    console.log('played seq value : ' + sequence[i]);
     anim_index = sequence[i];
     /*window.setTimeout(animate_comp_button, 1000);
     */(function(i) {
       setTimeout(function() {
         animate_button(sequence[i]);
-        console.log(Date.now());
       }, 600 * i);
     })(i);
   }
@@ -99,17 +103,12 @@ function button_press(b_index) {
   
   player_sequence.push(b_index);
   
-  console.log('player seq= ' + player_sequence);
-  console.log('ai seq= ' + sequence);
-  
   if (player_sequence[player_sequence.length - 1] !==
     sequence[player_sequence.length - 1]) {
-    console.log('wrong! you answered ' + player_sequence[player_sequence.length - 1] + 'but it should be ' + sequence[player_sequence.length - 1]);
     wrong_response();
   } else if (player_sequence.length === level + 1 && player_sequence[level] ===
   sequence[level]) {
     not_listening();
-    console.log('next_level, past level = ' + level);
     setTimeout(next_level, 1000);
   }
   render_seq_len();
@@ -135,7 +134,6 @@ function wrong_response() {
 
 function animate_button(index) {
   var ind = index - 1;
-  console.log('animated index: ' + ind);
   var sound = new Audio(sound_urls[ind]);
   sound.play();
   $(buttons[ind]).fadeOut(200);
@@ -156,10 +154,16 @@ function restart_level () {
 }
 
 function next_level () {
-  player_sequence = [];
-  level += 1;
-  start_level();
-  //add upper limit
+  if (level < 19) {
+    player_sequence = [];
+    level += 1;
+    start_level();
+  }
+  else {
+  
+  }
+  
+  //TODO: add upper limit
 }
 
 function restart_game () {
