@@ -10,11 +10,17 @@ var level = 0;
 var is_strict = false;
 var is_listening = false;
 
+var curr_lvl = document.getElementById('current-level');
+var casual_button = document.getElementById('casual-strict-button');
+var seq_len_disp = document.getElementById('seq-length');
+
 /* due to how getElementsByClassName works, buttons are:
   1
 2   3
   4  */
 
+//Generate the current game's entire 20-character
+//sequence to be played incrementally each level
 function generate_sequence() {
   while (sequence.length < 20) {
     sequence.push(Math.floor(Math.random()*4 + 1));
@@ -27,9 +33,15 @@ function start_game () {
 }
 
 function start_level () {
+  render_seq_len();
+  render_cur_lvl();
   play_sequence();
 }
 
+
+//Play the current level's sequence, cycle through the generated seq. and
+//pass the button indexes to animate_button. Used a timeOut with *i modifier
+//to animate in correct order with equal delays.
 var anim_index = 0;
 function play_sequence() {
   not_listening();
@@ -44,7 +56,8 @@ function play_sequence() {
       }, 600 * i);
     })(i);
   }
-  setTimeout(make_listening, 600);
+  is_listening = false;
+  setTimeout(make_listening, 700*(level + 1));
 }
 
 window.onkeyup = function(e) {
@@ -63,6 +76,9 @@ window.onkeyup = function(e) {
    }
 };
 
+//When one of the arrow keys are pressed and the player is allowed to input keys
+//(is_listening), compare the key's value according to the chart above to
+//the value of the current element in the generated sequence up to curr [level]
 function button_press(b_index) {
   animate_button(b_index);
   
@@ -80,6 +96,15 @@ function button_press(b_index) {
     console.log('next_level, past level = ' + level);
     setTimeout(next_level, 1000);
   }
+  render_seq_len();
+}
+
+function render_seq_len () {
+  seq_len_disp.innerHTML = (player_sequence.length);
+}
+
+function render_cur_lvl () {
+  curr_lvl.innerHTML = ('Level ' + (level + 1));
 }
 
 function wrong_response() {
